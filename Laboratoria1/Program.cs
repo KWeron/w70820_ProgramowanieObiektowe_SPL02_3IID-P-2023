@@ -1,21 +1,19 @@
 ﻿internal class Program
 {
-    private static void Main(string[] args)
+
+    // 1 zadanie
+    static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Console.WriteLine("Podaj liczbe:");
+        var n = Convert.ToInt32(Console.ReadLine());
+
+        if (n % 2 == 0)
+        {
+            Console.WriteLine("Podana liczba jest licbą parzystą.");
+        }
+        else
+        {
+            Console.WriteLine("Podana liczba jest liczbą nieparzystą");
+        };
     }
-}
-
-//zadnaie 2  
-void WriteEven()
-
-{
-    Console.WriteLine("Podaj n");
-    var n = Console.ReadLine();
-
-    for (var i = 0; i < int.Parse(n); i += 2)
-    {
-        Console.WriteLine(i);
-    }
-
 }
