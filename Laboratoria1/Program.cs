@@ -5,6 +5,11 @@ internal class Program
     // 1 zadanie
     static void Main(string[] args)
     {
+
+
+        Console.WriteLine("Menu: /n");
+
+
         Console.WriteLine("Podaj liczbe:");
         var n = int.Parse(Console.ReadLine());
 
@@ -16,15 +21,19 @@ internal class Program
         {
             Console.WriteLine("Podana liczba jest liczbą nieparzystą.");
         };
-   
-    WriteEven();
+
+
+
     }
 
     //zadanie 2
     static void WriteEven()
     {
+
         Console.WriteLine("Podaj liczbę do której chcesz skończyć odliczanie liczb parzystych: ");
         var n = Convert.ToInt32(Console.ReadLine());
+
+
         for (int i = 0; i <= n; i++)
         {
             if (i % 2 == 0)
@@ -32,6 +41,16 @@ internal class Program
                 Console.WriteLine(i);
 
             }
+        }
+    }
+
+    static int Silnia(int q)
+    {
+        if (q == 0 || q == 1)
+            return 1;
+        else
+        {
+            return (q * Silnia(q - 1));
         }
     }
 }
