@@ -5,66 +5,102 @@ using System.Net;
 internal class Program
 {
     // 1 zadanie
-    static void Main(string[] args) { 
+    static void Main(string[] args)
+    {
+        int opcja;
 
-        Console.WriteLine("Menu: /n");
+        while (true)
+        {
+            Console.WriteLine("Menu: \n 1.Sprawdź czy liczba jest parzysta \n 2.Wypisywanie liczb parzystych" +
+                "\n 3.Obliczanie silni \n 4.Gra - Zgadnij liczbę \n 5.Wyjście");
+
+            Console.WriteLine("Jaką opcje wybierasz? Wpisz numer od 1 do 5");
+
+            if (!int.TryParse(Console.ReadLine(), out opcja) || opcja > 6 || opcja < 1)
+            {
+                Console.WriteLine("Wpisałeś niepoprawny numer zadania. Wpisz ponownie.");
+                continue;
+            }
+
+            switch (opcja)
+            {
+                case 1:
+                    Number();
+                    break;
+                case 2:
+                    WriteEven();
+
+                    break;
+                case 3:
+                    Console.WriteLine("Z jakiej liczy chcesz obliczyć silnię?");
+                    int siln = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Silnia z " + siln + " wynosi " + Silnia(siln));
+                    break;
+                case 4:
+                    Game();
+                    break;
+            }
+            if (opcja == 5)
+                break;
+        }
+    }
 
 
 
-
-
-
+    static void Number()
+    {
         Console.WriteLine("Podaj liczbe:");
         var n = int.Parse(Console.ReadLine());
 
         if (n % 2 == 0)
         {
-            Console.WriteLine("Podana liczba jest licbą parzystą.");
+            Console.WriteLine("Podana liczba jest liczbą parzystą.");
         }
-        else
+        else if (n % 2 != 0)
         {
             Console.WriteLine("Podana liczba jest liczbą nieparzystą.");
         }
-
-
+        else
+        {
+            Console.WriteLine("Wpisałeś niepoprawną liczbę. Podaj liczbę całkowitą ");
+        }
+       
 
     }
 
-    //zadanie 2
     static void WriteEven()
     {
+        Console.WriteLine("Podaj liczbę do której chcesz skończyć odliczanie liczb parzystych: ");
 
-    Console.WriteLine("Podaj liczbę do której chcesz skończyć odliczanie liczb parzystych: ");
-    var n = Convert.ToInt32(Console.ReadLine());
-
-
-    for (int i = 0; i <= n; i++)
-    {
-        if (i % 2 == 0)
+        if (int.TryParse(Console.ReadLine(), out int n))
         {
-            Console.WriteLine(i);
-
+            for (int i = 0; i <= n; i+=2)
+            {
+                Console.WriteLine(i);
+            }
+        }else
+        {
+            Console.WriteLine("Wpisałeś niepoprawna liczbę, spróbuj jeszcz raz.");
         }
     }
-}
 
-static int Silnia(int q)
-{
-    if (q == 0 || q == 1)
-        return 1;
-    else
+    static int Silnia(int siln)
     {
-        return (q * Silnia(q - 1));
+        if (siln == 0 || siln == 1)
+            return 1;
+        else
+        {
+            return siln*Silnia(siln-1);
+        }
     }
-}
 
-static void Game()
+    static void Game()
     {
         Console.WriteLine("Gra na zgadywanie liczby");
 
         var zliczanie = 0;
         Random random = new Random();
-        var liczba = random.Next(1,21);
+        var liczba = random.Next(1, 21);
         int zgadywana;
 
         Console.WriteLine("Zgadnij jaką liczbę mam na myśli.");
@@ -76,16 +112,15 @@ static void Game()
             zgadywana = int.Parse(Console.ReadLine());
 
             if (zgadywana > liczba)
-                Console.WriteLine("Liczba, którą probujesz zgadnąć jest miejsza");
+                Console.WriteLine("Liczba, którą próbujesz zgadnąć jest mniejsza");
             if (zgadywana < liczba)
-                 Console.WriteLine();
-           
+                Console.WriteLine("Liczba, którą próbujesz zgadnąć jest większa");
+
 
         } while (liczba != zgadywana);
-            Console.WriteLine("Udało Ci sie zgadnąc za " + zliczanie + " razy");
-        
+        Console.WriteLine("Udało Ci sie zgadnąc za " + zliczanie + " razy");
+
 
     }
-
 
 }
