@@ -1,20 +1,51 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-string[] cars = { "volvo", "bmw", "fiat" };
-Console.WriteLine(cars[2]);
-
-int arrayLength = cars.Length;
-Console.WriteLine(arrayLength);
-
-int i = 0;
-
-while (i <= (arrayLength - 1))
+public class Osoba
 {
-    Console.WriteLine(cars[i]);
-    if (cars[i] == "bmw")
+    private string imie;
+    private string nazwisko;
+    private int wiek;
+    private string pesel;
+
+    public Osoba(string imie, string nazwisko, int wiek, string pesel)
     {
-        break;
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        Wiek = wiek;
+        this.pesel = pesel;
     }
-    i++;
+
+    public string Imie
+    {
+        get { return imie; }
+        set { imie = value; }
+    }
+
+    public string Nazwisko
+    {
+        get { return nazwisko; }
+        set { nazwisko = value; }
+    }
+
+    public int Wiek
+    {
+        get { return wiek; }
+        set
+        {
+            if (value < 0)
+                wiek = 0;
+            else
+                wiek = value;
+        }
+    }
+
+    public string Pesel
+    {
+        get { return pesel; }
+    }
+
+    public string PrzedstawSie
+    {
+        return $"Nazywam się {Imie} {Nazwisko} i mam {Wiek} lat.";
+    }
 }
- 
